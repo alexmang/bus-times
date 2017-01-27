@@ -1,5 +1,6 @@
 {  
-  "intents": [     
+  "intents": [    
+    { "intent": "SearchDirectionIntent", "slots": [ {"name": "StartLocation" ,"type": "Location" }, {"name": "EndLocation" ,"type": "Location" }]}, 
     { "intent": "AMAZON.YesIntent", "slots": [] },  
     { "intent": "AMAZON.NoIntent", "slots": [] },  
     { "intent": "AMAZON.HelpIntent", "slots": [] },

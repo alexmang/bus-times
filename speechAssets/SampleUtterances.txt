@@ -1,0 +1,2 @@
+SearchDirectionIntent How do i get from {StartLocation} to {EndLocation}
+SearchDirectionIntent for direction from {StartLocation} to {EndLocation}
