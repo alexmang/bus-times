@@ -50,7 +50,7 @@ var handlers = {
           } else {
             // console.log(err)
             // console.log(response.json.results);
-            alexa.emit(":tell", "not working");
+            alexa.emit(":tell", "Sorry I couldn't find the route for you.");
             // result = err;
           }
         });
