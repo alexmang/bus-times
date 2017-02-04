@@ -9,19 +9,15 @@ googleMapsClient.directions({
   transit_mode: ['bus']
 }, function(err, response) {
   if (!err) {
-    var departure_time = response.json.routes[0].legs[0].departure_time.text;
+            var depature_time = response.json.routes[0].legs[0].departure_time.text.value;
+            var steps = response.json.routes[0].legs[0].steps;
+            var departure_instructions = steps[0].html_instructions;
+            var departure_bus = steps[1].transit_details.line.name; // in cities use short_name
+            // console.log(departure_time);
+            var res = departure_instructions + " at " + response.json.routes[0].legs[0].departure_time.text + " and take " + departure_bus;
+            console.log(res);
 
-    //find departure stop
-    var steps = response.json.routes[0].legs[0].steps;
-    var departure_loc = steps[0].html_instructions;
-    var departure_bus = steps[1].transit_details.line.name; // in cities use short_name
-    console.log(departure_loc)
-    console.log(departure_bus)
-    // for (var step in steps) {
-    //   console.log(step)
-    // }
-
-    console.log(departure_time);
+    // console.log(departure_time);
   } else {
   	console.log(err);
   	console.log(response.json.results);

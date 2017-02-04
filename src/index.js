@@ -43,12 +43,12 @@ var handlers = {
           transit_mode: ['bus']
         }, function(err, response) {
           if (!err) {
-            var depature_time = response.json.routes[0].legs[0].departure_time.text;
+            // var depature_time = response.json.routes[0].legs[0].departure_time.text;
             var steps = response.json.routes[0].legs[0].steps;
             var departure_instructions = steps[0].html_instructions;
             var departure_bus = steps[1].transit_details.line.name; // in cities use short_name
-
-            alexa.emit(":tell", departure_instructions + " at " + departure_time + " and take " + departure_bus);
+            var res = departure_instructions + " at " + response.json.routes[0].legs[0].departure_time.text + " and take " + departure_bus;
+            alexa.emit(":tell", res);
           } else {
             // console.log(err)
             // console.log(response.json.results);
