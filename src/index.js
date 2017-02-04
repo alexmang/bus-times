@@ -1,7 +1,9 @@
 // 'use strict';
 
 var Alexa = require("alexa-sdk");
-var APP_ID = "amzn1.ask.skill.8d950917-1af0-4884-91ae-290660e161a8";
+var constants = require('./constants');
+
+var APP_ID = constants.appId
 
 
 var languageStrings = {
