@@ -2,7 +2,7 @@
 
 var Alexa = require("alexa-sdk");
 var constants = require('./constants');
-var setupEventHandler = require("./SetupEventHandler")
+var setupEventHandler = require("./SetupEventHandlers")
 var APP_ID = constants.appId
 
 
@@ -26,7 +26,13 @@ var handlers = {
         this.emit(' : tell', this.t("WELCOME_MESSAGE"));
     },
     'SearchDirectionIntent': function() {
-        var startLocation = this.event.request.intent.slots.StartLocation.value;
+        var startLocation;
+        if (this.event.request.intent.slots.StartLocation.value == undefined) {
+            startLocation = this.attributes['home'];
+        } else {
+            startLocation = this.event.request.intent.slots.StartLocation.value;
+        }
+
         var endLocation = this.event.request.intent.slots.EndLocation.value;
 
         // TODO: Check STARTLOC
@@ -86,7 +92,7 @@ var handlers = {
 exports.handler = function(event, context, callback) {
     alexa = Alexa.handler(event, context);
     alexa.APP_ID = APP_ID;
-
+    alexa.dynamoDBTableName = 'BusTimeUsers';
     alexa.resources = languageStrings;
     alexa.registerHandlers(handlers,setupEventHandler);
     alexa.execute();
