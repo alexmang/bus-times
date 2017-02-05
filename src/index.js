@@ -2,7 +2,7 @@
 
 var Alexa = require("alexa-sdk");
 var constants = require('./constants');
-
+var setupEventHandler = require("./SetupEventHandler")
 var APP_ID = constants.appId
 
 
@@ -88,6 +88,6 @@ exports.handler = function(event, context, callback) {
     alexa.APP_ID = APP_ID;
 
     alexa.resources = languageStrings;
-    alexa.registerHandlers(handlers);
+    alexa.registerHandlers(handlers,setupEventHandler);
     alexa.execute();
 }
